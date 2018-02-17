@@ -17,6 +17,8 @@ class DialogCreatorMain(QMainWindow):
         self.ui=uiCreator()
         self.ui.setupUi(self)
 
+    def SetExerciseList(self,ex_list):
+        
 
 if __name__ == "__main__":
     import sys
@@ -25,6 +27,8 @@ if __name__ == "__main__":
     else:
         app = QtWidgets.QApplication.instance() 
     MainWindow = DialogCreatorMain()
+    ex_list=[{'name':'exercise1'},{'name':'exercise2'}]
     MainWindow.show()
+    MainWindow.SetExecriseList(ex_list)
     sys.exit(app.exec_())
 
