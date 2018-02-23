@@ -18,6 +18,10 @@ class DialogCreatorMain(QMainWindow):
         self.ui.setupUi(self)
 
     def SetExerciseList(self,ex_list):
+        self.ex_list=ex_list
+        self.ui.lstTypes.clear()
+        for item in self.ex_list:
+            self.ui.lstTypes.addItem(item['name'])
         
 
 if __name__ == "__main__":
@@ -29,6 +33,6 @@ if __name__ == "__main__":
     MainWindow = DialogCreatorMain()
     ex_list=[{'name':'exercise1'},{'name':'exercise2'}]
     MainWindow.show()
-    MainWindow.SetExecriseList(ex_list)
+    MainWindow.SetExerciseList(ex_list)
     sys.exit(app.exec_())
 

@@ -6,7 +6,7 @@ Created on Sat Feb 17 18:28:00 2018
 """
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QTableWidgetItem,QTableWidget,QAbstractItemView
+from PyQt5.QtWidgets import QTableWidgetItem,QTableWidget,QAbstractItemView,QAbstractScrollArea
 
 class NumericTableWidgetItem(QTableWidgetItem):
     def __init__(self,text,sortKey):
@@ -20,12 +20,12 @@ class NumericTableWidgetItem(QTableWidgetItem):
     
 class ListboxTable(QTableWidget):
     def __init__(self,*__args):
-        QTableWidget.__init(self,*__args)
+        QTableWidget.__init__(self,*__args)
         
-        self.resizeColumsToContents()
-        self.resizeRowsToContents()
+        self.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+
         self.editTriggers=QAbstractItemView.NoEditTriggers
-        self.setSelectiuonBehavior(QAbstractItemView.SelectRows)
+#        self.setSelectiuonBehavior(QAbstractItemView.SelectRows)
         self.setSelectionMode(QAbstractItemView.SingleSelection)
         self.setSortingEnabled(True)
         
@@ -42,8 +42,6 @@ class ListboxTable(QTableWidget):
                 self.setItem(m,n,newitem)
                 
         self.setHorizontalHeader(horHeaders)
-        self.resizeColumnsToContents()
-        self.resizeRowsToContents()
 
 
 

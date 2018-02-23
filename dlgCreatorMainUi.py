@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'creator_main.ui'
+# Form implementation generated from reading ui file 'dlgCreatorMain.ui'
 #
 # Created by: PyQt5 UI code generator 5.6
 #
@@ -55,7 +55,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Exercise creator for 1st grades"))
         self.label.setText(_translate("MainWindow", "Filter:"))
         self.cmdCancel.setText(_translate("MainWindow", "Cancel"))
         self.cmdCreate.setText(_translate("MainWindow", "Create excersize sheet"))
@@ -63,10 +63,7 @@ class Ui_MainWindow(object):
 
 if __name__ == "__main__":
     import sys
-    if not QtWidgets.QApplication.instance():
-        app = QtWidgets.QApplication(sys.argv)
-    else:
-        app = QtWidgets.QApplication.instance() 
+    app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
