@@ -12,15 +12,19 @@ from PyQt5.QtWidgets import QMainWindow
 from PyQt5 import QtWidgets
 
 class DialogCreatorMain(QMainWindow):
+
     def __init__(self):
         QMainWindow.__init__(self)
         self.ui=uiCreator()
         self.ui.setupUi(self)
         self.ui.cmdCreate.clicked.connect(self.CreateSlot)
+        self.ex_idx=0
 
-    @QtWidgets.Slot()
     def CreateSlot(self):
-        print("create")
+        idx=self.ui.lstTypes.currentRow()
+        ex_name="{0}_{1}".format(self.ex_list[idx]['sheet'],self.ex_idx)
+        self.ex_list[idx]['method'](ex_name)
+        self.ex_idx=self.ex_idx+1
         return
 
     def SetExerciseList(self,ex_list):
