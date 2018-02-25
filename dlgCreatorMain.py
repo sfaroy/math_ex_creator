@@ -16,6 +16,12 @@ class DialogCreatorMain(QMainWindow):
         QMainWindow.__init__(self)
         self.ui=uiCreator()
         self.ui.setupUi(self)
+        self.ui.cmdCreate.clicked.connect(self.CreateSlot)
+
+    @QtWidgets.Slot()
+    def CreateSlot(self):
+        print("create")
+        return
 
     def SetExerciseList(self,ex_list):
         self.ex_list=ex_list
