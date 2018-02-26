@@ -18,6 +18,9 @@ class Ui_MainWindow(object):
         self.verticalLayout.setObjectName("verticalLayout")
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
+        self.lstExercises = QtWidgets.QListWidget(self.centralwidget)
+        self.lstExercises.setObjectName("lstExercises")
+        self.horizontalLayout.addWidget(self.lstExercises)
         self.lstTypes = QtWidgets.QListWidget(self.centralwidget)
         self.lstTypes.setObjectName("lstTypes")
         self.horizontalLayout.addWidget(self.lstTypes)
@@ -34,12 +37,12 @@ class Ui_MainWindow(object):
         self.verticalLayout.addLayout(self.horizontalLayout_3)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.cmdCancel = QtWidgets.QPushButton(self.centralwidget)
-        self.cmdCancel.setObjectName("cmdCancel")
-        self.horizontalLayout_2.addWidget(self.cmdCancel)
         self.cmdCreate = QtWidgets.QPushButton(self.centralwidget)
         self.cmdCreate.setObjectName("cmdCreate")
         self.horizontalLayout_2.addWidget(self.cmdCreate)
+        self.cmdAddSheet = QtWidgets.QPushButton(self.centralwidget)
+        self.cmdAddSheet.setObjectName("cmdAddSheet")
+        self.horizontalLayout_2.addWidget(self.cmdAddSheet)
         self.verticalLayout.addLayout(self.horizontalLayout_2)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -57,8 +60,8 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Exercise creator for 1st grades"))
         self.label.setText(_translate("MainWindow", "Filter:"))
-        self.cmdCancel.setText(_translate("MainWindow", "Cancel"))
-        self.cmdCreate.setText(_translate("MainWindow", "Create excersize sheet"))
+        self.cmdCreate.setText(_translate("MainWindow", "Create excel"))
+        self.cmdAddSheet.setText(_translate("MainWindow", "Add exercise sheet"))
 
 
 if __name__ == "__main__":

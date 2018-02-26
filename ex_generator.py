@@ -34,20 +34,21 @@ def generate_mult(count=60,range1=range(1,10),range2=range(1,10)):
 
     for j in range1:
        for k in range2:
-           all_perms.append((min(i,k),max(i,k)))
+           all_perms.append((min(j,k),max(j,k)))
 
-    all_perms=list(set(all_perms)) #make this list unique
+  #  all_perms_set=set(all_perms)
+  #  all_perms=list(all_perms_set) #make this list unique
 
-    all_perms=shuffle(all_perms)
+    shuffle(all_perms)
    
     this_count=min(count,len(all_perms))
 
     for n in range(0,this_count):
-       i,k=all_perms(n)
+       i,k=all_perms[n]
        xx=random.random()
        if xx<0.5:
            i,k=k,i #swap
-       ex="{0}x{1}=".format(i,k)
+       ex="{0} x {1} = ".format(i,k)
        ex_list.append(ex)
 
     if this_count<count: #fill rest of the list with empty spaces
@@ -56,5 +57,33 @@ def generate_mult(count=60,range1=range(1,10),range2=range(1,10)):
        
     return ex_list
     
-           
-#list1=generate_sum_diff()
+
+def generate_sumdiff_variable(count=60,min_sum=70,max_sum=140,positive_ratio=0.5):
+
+    ex_list=[]
+    left_ratio=0.5
+
+    for i in range(0,count):
+
+        xx=random.random()
+        if xx<=positive_ratio:
+            sum=random.randint(min_sum,max_sum)
+            a=random.randint(0,sum)
+            xx=random.random()
+            is_left=(xx>left_ratio)
+            if not is_left:
+                ex='{0} + _____ = {1}'.format(a,sum)
+            else:
+                ex='_____ + {0} = {1}'.format(a,sum)
+        else:
+            sum=random.randint(min_sum,max_sum)
+            a=random.randint(0,sum)
+            xx=random.random()
+            is_left=(xx>left_ratio)
+            if not is_left:
+                ex='{0} - _____ = {1}'.format(sum,a)
+            else:
+                ex='_____ - {0} = {1}'.format(a,sum-a)
+        ex_list.append(ex)
+
+    return ex_list
