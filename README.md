@@ -7,17 +7,17 @@ To execute:
 use excercise_creator.py
 
 It will open the following dialog:
-![base dialog](https://github.com/sfaroy/FirstGraders_MathExCreator/images/main_screen.png)
+![base dialog](https://raw.github.com/sfaroy/FirstGraders_MathExCreator/master/images/main_screen.png)
 
 Select the desired exercise sheet and click add sheet. You may select multiple sheets or the same sheets twice:
-![selection](https://github.com/sfaroy/FirstGraders_MathExCreator/images/main_screen_with_selections.png)
+![selection](https://raw.github.com/sfaroy/FirstGraders_MathExCreator/master/images/main_screen_with_selections.png)
 
 Clicking "Create excel", shall create an excel workbook with excercise sheets ready to print:
-![workbook_mult](https://github.com/sfaroy/FirstGraders_MathExCreator/images/workbook_mult.png)
+![workbook_mult](https://raw.github.com/sfaroy/FirstGraders_MathExCreator/master/images/images/workbook_mult.png)
 
-![workbook_sum](https://github.com/sfaroy/FirstGraders_MathExCreator/images/workbook_sum.png)
+![workbook_sum](https://raw.github.com/sfaroy/FirstGraders_MathExCreator/master/images/workbook_sum.png)
 
-![workbook_sumvar](https://github.com/sfaroy/FirstGraders_MathExCreator/images/workboot_sumvar.png)
+![workbook_sumvar](https://raw.github.com/sfaroy/FirstGraders_MathExCreator/master/images/workboot_sumvar.png)
 
 ## Appendix
 
