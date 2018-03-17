@@ -13,7 +13,7 @@ Select the desired exercise sheet and click add sheet. You may select multiple s
 ![selection](https://raw.github.com/sfaroy/FirstGraders_MathExCreator/master/images/main_screen_with_selections.png)
 
 Clicking "Create excel", shall create an excel workbook with excercise sheets ready to print:
-![workbook_mult](https://raw.github.com/sfaroy/FirstGraders_MathExCreator/master/images/images/workbook_mult.png)
+![workbook_mult](https://raw.github.com/sfaroy/FirstGraders_MathExCreator/master/images/workbook_mult.png)
 
 ![workbook_sum](https://raw.github.com/sfaroy/FirstGraders_MathExCreator/master/images/workbook_sum.png)
 
