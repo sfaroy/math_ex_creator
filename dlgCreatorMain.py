@@ -55,7 +55,7 @@ class DialogCreatorMain(QMainWindow):
 
 if __name__ == "__main__":
     import sys
-    if not QtWidgets.QApplication.instance():
+    if not QtWidgets.QApplication.instance(): #to work with the same interperter (such as in spyder)
         app = QtWidgets.QApplication(sys.argv)
     else:
         app = QtWidgets.QApplication.instance() 

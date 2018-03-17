@@ -41,26 +41,14 @@ if __name__ == "__main__":
     app_icon.addFile('gui/icons/256x256.png', QtCore.QSize(256,256))
     app.setWindowIcon(app_icon)
     MainWindow = DialogCreatorMain(writer)
-    ex_list=[{'name':'כפל',"sheet":"mult","method":create_mult},
-             {'name':'חיבור/חיסור',"sheet":"sum","method":create_sum_diff},
-             {'name':'חיבור/חיסור עם נעלם',"sheet":"sum_var","method":create_sum_diff_var}]
+    ex_list=[{'name':'Multiplication',"sheet":"mult","method":create_mult},
+             {'name':'Add/subtract',"sheet":"sum","method":create_sum_diff},
+             {'name':'Add/Subtract with variable',"sheet":"sum_var","method":create_sum_diff_var}]
     MainWindow.show()
     MainWindow.SetExerciseList(ex_list)
     res=app.exec_()
 
 
-    # writer.write("exercises.xls")
-    # from win32com.client import Dispatch
-
-    # xl = Dispatch("Excel.Application")
-    # xl.Visible = True # otherwise excel is hidden
-
-    # from os import path as osp
-
-    # ex_file=osp.join(osp.abspath("."),'exercises.xls')
-
-    # # newest excel does not accept forward slash in path
-    # wb = xl.Workbooks.Open(ex_file)
 
     sys.exit(res)
 

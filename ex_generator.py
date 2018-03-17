@@ -43,8 +43,13 @@ def generate_mult(count=60,range1=range(1,10),range2=range(1,10)):
    
     this_count=min(count,len(all_perms))
 
-    for n in range(0,this_count):
-       i,k=all_perms[n]
+    j=0
+    for n in range(0,count):
+       i,k=all_perms[j]
+       j=j+1
+       if j==len(all_perms):
+           j=0
+           shuffle(all_perms)
        xx=random.random()
        if xx<0.5:
            i,k=k,i #swap
