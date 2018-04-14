@@ -26,6 +26,10 @@ def create_mult(sheet_name):
     ex_list=gen.generate_mult()
     writer.create_ex_list(sheet_name,ex_list)
 
+def create_div(sheet_name):
+    ex_list=gen.generate_div()
+    writer.create_ex_list(sheet_name,ex_list)
+
 
 if __name__ == "__main__":
     import sys
@@ -42,6 +46,7 @@ if __name__ == "__main__":
     app.setWindowIcon(app_icon)
     MainWindow = DialogCreatorMain(writer)
     ex_list=[{'name':'Multiplication',"sheet":"mult","method":create_mult},
+             {'name':'Division',"sheet":"div","method":create_div},
              {'name':'Add/subtract',"sheet":"sum","method":create_sum_diff},
              {'name':'Add/Subtract with variable',"sheet":"sum_var","method":create_sum_diff_var}]
     MainWindow.show()

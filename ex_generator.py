@@ -62,6 +62,41 @@ def generate_mult(count=60,range1=range(1,10),range2=range(1,10)):
        
     return ex_list
     
+def generate_div(count=60,range1=range(1,10),range2=range(1,10)):
+    ex_list=[]
+
+    all_perms=[]
+
+    for j in range1:
+       for k in range2:
+           all_perms.append((min(j,k),max(j,k)))
+
+  #  all_perms_set=set(all_perms)
+  #  all_perms=list(all_perms_set) #make this list unique
+
+    shuffle(all_perms)
+   
+    this_count=min(count,len(all_perms))
+
+    j=0
+    for n in range(0,count):
+       i,k=all_perms[j]
+       j=j+1
+       if j==len(all_perms):
+           j=0
+           shuffle(all_perms)
+       xx=random.random()
+       if xx<0.5:
+           i,k=k,i #swap
+       ex="{0} : {1} = ".format(i*k,k)
+       ex_list.append(ex)
+
+    if this_count<count: #fill rest of the list with empty spaces
+        for i in range(0,count-this_count):
+            ex_list.append("")
+       
+    return ex_list
+    
 
 def generate_sumdiff_variable(count=60,min_sum=70,max_sum=140,positive_ratio=0.5):
 
