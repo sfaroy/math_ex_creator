@@ -17,17 +17,17 @@ from xls_writer import exercise_xls_writer
 # %%
 writer=exercise_xls_writer()
 
-def create_sum_diff(sheet_name):
-    ex_list=gen.generate_sum_diff()
+def create_sum_diff(sheet_name,min_sum,max_sum):
+    ex_list=gen.generate_sum_diff(min_sum=min_sum,max_sum=max_sum)
     writer.create_ex_list(sheet_name,ex_list)
 
 def create_sum_diff_var(sheet_name):
-    ex_list=gen.generate_sumdiff_variable()
+    ex_list=gen.generate_sumdiff_variable(min_sum=min_sum,max_sum=max_sum)
     writer.create_ex_list(sheet_name,ex_list)
 
 
-def create_mult(sheet_name):
-    ex_list=gen.generate_mult()
+def create_mult(sheet_name, range1_min, range1_max, range2_min, range2_max):
+    ex_list=gen.generate_mult(range1=range(range1_min,range1_max+1), range2=range(range2_min,range2_max+1))
     writer.create_ex_list(sheet_name,ex_list)
 
 def create_div(sheet_name):
@@ -49,10 +49,26 @@ if __name__ == "__main__":
     app_icon.addFile('gui/icons/256x256.png', QtCore.QSize(256,256))
     app.setWindowIcon(app_icon)
     MainWindow = DialogCreatorMain(writer)
-    ex_list=[{'name':'Multiplication',"sheet":"mult","method":create_mult},
+    ex_list=[{'name':'Multiplication',"sheet":"mult","method":create_mult,
+              "params":[
+                  {'name':'range1_min','min':0,'max':9,'default':1},
+                  {'name':'range1_max','min':0,'max':9,'default':9},
+                  {'name':'range2_min','min':0,'max':9,'default':1},
+                  {'name':'range2_max','min':0,'max':9,'default':9}]},
              {'name':'Division',"sheet":"div","method":create_div},
-             {'name':'Add/subtract',"sheet":"sum","method":create_sum_diff},
-             {'name':'Add/Subtract with variable',"sheet":"sum_var","method":create_sum_diff_var}]
+             {'name':'Add/subtract',"sheet":"sum","method":create_sum_diff,
+              "params":[
+                  {'name':'min_sum','min':0,'max':1000,'default':110},
+                  {'name':'max_sum','min':0,'max':1000,'default':220}
+              ]
+              },
+             {'name':'Add/Subtract with variable',"sheet":"sum_var","method":create_sum_diff_var,
+              "params":[
+                  {'name':'min_sum','min':0,'max':1000,'default':110},
+                  {'name':'max_sum','min':0,'max':1000,'default':220}
+              ]
+              }
+             ]
     MainWindow.show()
     MainWindow.SetExerciseList(ex_list)
     res=app.exec_()

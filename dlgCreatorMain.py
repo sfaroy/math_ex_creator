@@ -14,6 +14,7 @@ from PyQt5.QtWidgets import QMainWindow
 from PyQt5 import QtWidgets
 from xls_writer import exercise_xls_writer
 
+
 class DialogCreatorMain(QMainWindow):
 
     def __init__(self,writer):
@@ -24,6 +25,17 @@ class DialogCreatorMain(QMainWindow):
         self.ui.cmdCreate.clicked.connect(self.CreateExcel)
         self.ex_idx=0
         self.writer=writer
+        #self.ui.wgtParams.set_parameters([{'name':'param1','min':0,'max':10,'default':4},{'name':'param2','min':0,'max':20,'default':6}])
+        self.ui.lstTypes.selection_changed.connect(self.TypeSelectionChanged)
+
+    def TypeSelectionChanged(self):
+        idx=self.ui.lstTypes.currentRow()
+        ex=self.ex_list[idx]
+        if 'params' in ex:
+            self.ui.wgtParams.set_parameters(ex['params'])
+        else:
+            self.ui.wgtParams.set_parameters([])
+
 
     def CreateExcel(self):
         if self.ui.lstExercises.count()>0:
@@ -43,9 +55,14 @@ class DialogCreatorMain(QMainWindow):
         
     def AddSheet(self):
         idx=self.ui.lstTypes.currentRow()
-        ex_name="{0}_{1}".format(self.ex_list[idx]['sheet'],self.ex_idx)
+        ex=self.ex_list[idx]
+        ex_name="{0}_{1}".format(ex['sheet'],self.ex_idx)
         self.ui.lstExercises.addItem(ex_name)
-        self.ex_list[idx]['method'](ex_name)
+        if 'params' in ex:
+            d=self.ui.wgtParams.get_result()
+            ex['method'](ex_name,**d)
+        else:
+            ex['method'](ex_name)
         self.ex_idx=self.ex_idx+1
 
     def SetExerciseList(self,ex_list):

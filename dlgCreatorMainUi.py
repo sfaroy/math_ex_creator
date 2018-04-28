@@ -7,6 +7,8 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from wgtConfigurator import Configurator
+from ListWidgetWithEvent import ListWidgetWithEvent
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -26,9 +28,12 @@ class Ui_MainWindow(object):
         self.splitter.setObjectName("splitter")
         self.lstExercises = QtWidgets.QListWidget(self.splitter)
         self.lstExercises.setObjectName("lstExercises")
-        self.lstTypes = QtWidgets.QListWidget(self.splitter)
+        self.lstTypes = ListWidgetWithEvent(self.splitter)
         self.lstTypes.setObjectName("lstTypes")
         self.verticalLayout.addWidget(self.splitter)
+        self.wgtParams = Configurator(self.centralwidget)
+        self.wgtParams.setObjectName("wgtParams")
+        self.verticalLayout.addWidget(self.wgtParams)
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.label = QtWidgets.QLabel(self.centralwidget)
@@ -36,22 +41,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.addWidget(self.label)
         self.txtFilter = QtWidgets.QLineEdit(self.centralwidget)
         self.txtFilter.setEnabled(False)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.txtFilter.sizePolicy().hasHeightForWidth())
-        self.txtFilter.setSizePolicy(sizePolicy)
         self.txtFilter.setObjectName("txtFilter")
         self.horizontalLayout_3.addWidget(self.txtFilter)
-        self.horizontalSlider = QtWidgets.QSlider(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(1)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.horizontalSlider.sizePolicy().hasHeightForWidth())
-        self.horizontalSlider.setSizePolicy(sizePolicy)
-        self.horizontalSlider.setOrientation(QtCore.Qt.Horizontal)
-        self.horizontalSlider.setObjectName("horizontalSlider")
-        self.horizontalLayout_3.addWidget(self.horizontalSlider)
         self.verticalLayout.addLayout(self.horizontalLayout_3)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
@@ -81,6 +72,7 @@ class Ui_MainWindow(object):
         self.cmdCreate.setText(_translate("MainWindow", "Create excel"))
         self.cmdAddSheet.setText(_translate("MainWindow", "Add exercise sheet"))
 
+from wgtConfigurator import Configurator
 
 if __name__ == "__main__":
     import sys

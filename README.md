@@ -1,6 +1,7 @@
 # First Graders Math excercise creator
 ## General overview
-Math excercises for the first graders. Creates a work-sheets for the first & second graders to print. Allowing the kids to exercise more effectivly.
+Math exercises for the first graders. Creates a work-sheets for the first & second graders to print. Allowing the kids to exercise math in writing.
+Generate random exercises
 
 ## Execution flow & screenshots
 To execute: 

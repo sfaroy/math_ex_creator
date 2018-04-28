@@ -9,8 +9,8 @@ Written by Roee Sfaradi
 # %%
 
 
-from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QTableWidgetItem,QWidget
+from PyQt5 import QtCore, QtWidgets
+from PyQt5.QtWidgets import QWidget
 
 
 
@@ -49,8 +49,9 @@ class SliderTextbox(QWidget):
 
         text_box.textChanged.connect(self.text_box_update)
 
-        self._min_val=_min
-        self._max_val=_max
+        self._name=name
+        self._min_val = _min
+        self._max_val = _max
 
         self.horizontalLayout.addWidget(label)
         self.horizontalLayout.addWidget(text_box)
@@ -61,12 +62,15 @@ class SliderTextbox(QWidget):
 
     def text_box_update(self):
         if is_number(self.text_box.text()):
-            val=float(self.text_box.text())
-            val=int(val+0.5)
-            val=max(min(val,self._max_val),self._min_val)
+            val = float(self.text_box.text())
+            val = int(val+0.5)
+            val = max(min(val,self._max_val),self._min_val)
 
             self.text_box.setText("{}".format(val))
             self.slider.setValue(val)
+
+    def update_result(self,dict):
+        dict[self._name]=self.slider.value()
 
 
 
@@ -77,21 +81,43 @@ class SliderTextbox(QWidget):
 
 class Configurator(QWidget):
 
-    def __init__(self):
-        QWidget.__init__(self)
+    def __init__(self,*args):
+        QWidget.__init__(self,*args)
         self.verticalLayout = QtWidgets.QVBoxLayout(self)
-        self._params=[]
-        self._ui=[]
+        self._params = []
+        self._ui = []
+        self._ctl_list=[]
 
     def set_parameters(self, param_list):
-        for item in self._ui:
-            self.verticalLayout.removeItem(item)
+        #for i in range(0, self.verticalLayout.count()):
+            #self.verticalLayout.removeItem(self.verticalLayout.itemAt(0))
+            #self.verticalLayout.removeWidget(self.verticalLayout.itemAt(0))
+
+        while self.verticalLayout.count() >0:
+            item=self.verticalLayout.takeAt(0)
+            if not item:
+                continue
+            w=item.widget()
+            if w:
+                w.deleteLater()
+        #for item in self._ctl_list:
+#            self.verticalLayout.removeWidget(item)
+#            del item
+
+        self._ctl_list=[]
         for param in param_list:
-            slider_textbox=SliderTextbox(param['name'],param['min'],param['max'],param['default'])
+            slider_textbox=SliderTextbox(param['name'], param['min'], param['max'], param['default'])
 
             self.verticalLayout.addWidget(slider_textbox)
 
-            self._ui.append(slider_textbox)
+            self._ctl_list.append(slider_textbox)
+
+    def get_result(self):
+        d={}
+        for item in self._ctl_list:
+            item.update_result(d)
+
+        return d
 
 
 if __name__ == "__main__":
@@ -102,6 +128,7 @@ if __name__ == "__main__":
         app = QtWidgets.QApplication.instance()
     MainWindow = Configurator()
     MainWindow.set_parameters([{'name':'param1','min':0,'max':10,'default':4},{'name':'param2','min':0,'max':20,'default':6}])
+    MainWindow.set_parameters([{'name':'aaa','min':-20,'max':10,'default':4}])
     MainWindow.show()
     sys.exit(app.exec_())
 
