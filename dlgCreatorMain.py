@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sat Jan 27 19:00:07 2018
+Exercise creator
+dlgCreatorMain.py - Main dialog
 
-dlgCreatorMain.py
-
-@author: Roee
+Licensed under the MIT License (see LICENSE for details)
+Written by Roee Sfaradi
 """
+# %%
+
 
 from dlgCreatorMainUi import Ui_MainWindow as uiCreator
 from PyQt5.QtWidgets import QMainWindow

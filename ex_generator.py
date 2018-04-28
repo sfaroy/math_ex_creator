@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sat Feb 24 19:48:44 2018
+Exercise creator
+ex_generator.py - The excercises generator script
 
-@author: Roee
+Licensed under the MIT License (see LICENSE for details)
+Written by Roee Sfaradi
 """
-
-
 # %%
 
 import random

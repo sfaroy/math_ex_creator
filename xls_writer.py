@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Feb 23 13:27:19 2018
+Exercise creator
+xls_writer.py - Excel sheet writer class
 
-@author: Roee
+Licensed under the MIT License (see LICENSE for details)
+Written by Roee Sfaradi
 """
 # %%
 

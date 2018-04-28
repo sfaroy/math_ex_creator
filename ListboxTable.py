@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
-Created on Sat Feb 17 18:28:00 2018
+Exercise creator
+ListboxTable.py
 
-@author: Roee
+Licensed under the MIT License (see LICENSE for details)
+Written by Roee Sfaradi
 """
+# %%
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QTableWidgetItem,QTableWidget,QAbstractItemView,QAbstractScrollArea

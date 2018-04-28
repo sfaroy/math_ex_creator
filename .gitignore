@@ -1,2 +1,6 @@
 *.pyc
-/dist
+*.xls
+dist/
+.idea/
+.vscode/
+__pycache__/

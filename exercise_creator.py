@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
-Created on Sat Feb 17 19:21:09 2018
+Exercise creator
+excercise_creator.py - Excel sheet writer class
 
-@author: Roee
+Licensed under the MIT License (see LICENSE for details)
+Written by Roee Sfaradi
 """
+# %%
 
 from dlgCreatorMain import DialogCreatorMain
 from PyQt5 import QtWidgets,QtGui,QtCore
