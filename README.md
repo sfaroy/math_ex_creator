@@ -19,6 +19,8 @@ Clicking "Create excel", shall create an excel workbook with excercise sheets re
 
 ![workbook_sumvar](https://raw.github.com/sfaroy/FirstGraders_MathExCreator/master/images/workboot_sumvar.png)
 
+![workbook_div](https://raw.github.com/sfaroy/FirstGraders_MathExCreator/master/images/workbook_div.png)
+
 ## Appendix
 
 This readme was edited using: https://stackedit.io/app#
