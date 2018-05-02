@@ -21,7 +21,7 @@ def create_sum_diff(sheet_name,min_sum,max_sum):
     ex_list=gen.generate_sum_diff(min_sum=min_sum,max_sum=max_sum)
     writer.create_ex_list(sheet_name,ex_list)
 
-def create_sum_diff_var(sheet_name):
+def create_sum_diff_var(sheet_name,min_sum,max_sum):
     ex_list=gen.generate_sumdiff_variable(min_sum=min_sum,max_sum=max_sum)
     writer.create_ex_list(sheet_name,ex_list)
 
@@ -30,8 +30,8 @@ def create_mult(sheet_name, range1_min, range1_max, range2_min, range2_max):
     ex_list=gen.generate_mult(range1=range(range1_min,range1_max+1), range2=range(range2_min,range2_max+1))
     writer.create_ex_list(sheet_name,ex_list)
 
-def create_div(sheet_name):
-    ex_list=gen.generate_div()
+def create_div(sheet_name, range1_min, range1_max, range2_min, range2_max):
+    ex_list=gen.generate_div(range1=range(range1_min,range1_max+1), range2=range(range2_min,range2_max+1))
     writer.create_ex_list(sheet_name,ex_list)
 
 
@@ -51,11 +51,16 @@ if __name__ == "__main__":
     MainWindow = DialogCreatorMain(writer)
     ex_list=[{'name':'Multiplication',"sheet":"mult","method":create_mult,
               "params":[
-                  {'name':'range1_min','min':0,'max':9,'default':1},
-                  {'name':'range1_max','min':0,'max':9,'default':9},
-                  {'name':'range2_min','min':0,'max':9,'default':1},
-                  {'name':'range2_max','min':0,'max':9,'default':9}]},
-             {'name':'Division',"sheet":"div","method":create_div},
+                  {'name':'range1_min','min':0,'max':10,'default':1},
+                  {'name':'range1_max','min':0,'max':10,'default':9},
+                  {'name':'range2_min','min':0,'max':10,'default':1},
+                  {'name':'range2_max','min':0,'max':10,'default':9}]},
+             {'name':'Division',"sheet":"div","method":create_div,
+              "params":[
+                  {'name':'range1_min','min':0,'max':10,'default':1},
+                  {'name':'range1_max','min':0,'max':10,'default':9},
+                  {'name':'range2_min','min':0,'max':10,'default':1},
+                  {'name':'range2_max','min':0,'max':10,'default':9}]},
              {'name':'Add/subtract',"sheet":"sum","method":create_sum_diff,
               "params":[
                   {'name':'min_sum','min':0,'max':1000,'default':110},
