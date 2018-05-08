@@ -21,6 +21,10 @@ def create_sum_diff(sheet_name,min_sum,max_sum):
     ex_list=gen.generate_sum_diff(min_sum=min_sum,max_sum=max_sum)
     writer.create_ex_list(sheet_name,ex_list)
 
+def create_sum_diff_w_parentheses(sheet_name,min_sum,max_sum):
+    ex_list=gen.generate_sum_diff_with_parentheses(min_sum=min_sum,max_sum=max_sum)
+    writer.create_ex_list(sheet_name,ex_list)
+
 def create_sum_diff_var(sheet_name,min_sum,max_sum):
     ex_list=gen.generate_sumdiff_variable(min_sum=min_sum,max_sum=max_sum)
     writer.create_ex_list(sheet_name,ex_list)
@@ -49,30 +53,37 @@ if __name__ == "__main__":
     app_icon.addFile('gui/icons/256x256.png', QtCore.QSize(256,256))
     app.setWindowIcon(app_icon)
     MainWindow = DialogCreatorMain(writer)
-    ex_list=[{'name':'Multiplication',"sheet":"mult","method":create_mult,
-              "params":[
-                  {'name':'range1_min','min':0,'max':10,'default':1},
-                  {'name':'range1_max','min':0,'max':10,'default':9},
-                  {'name':'range2_min','min':0,'max':10,'default':1},
-                  {'name':'range2_max','min':0,'max':10,'default':9}]},
-             {'name':'Division',"sheet":"div","method":create_div,
-              "params":[
-                  {'name':'range1_min','min':0,'max':10,'default':1},
-                  {'name':'range1_max','min':0,'max':10,'default':9},
-                  {'name':'range2_min','min':0,'max':10,'default':1},
-                  {'name':'range2_max','min':0,'max':10,'default':9}]},
-             {'name':'Add/subtract',"sheet":"sum","method":create_sum_diff,
+    ex_list=[
+             {'name':'1. Add/subtract',"sheet":"sum","method":create_sum_diff,
               "params":[
                   {'name':'min_sum','min':0,'max':1000,'default':110},
                   {'name':'max_sum','min':0,'max':1000,'default':220}
               ]
               },
-             {'name':'Add/Subtract with variable',"sheet":"sum_var","method":create_sum_diff_var,
+             {'name':'2. Add/Subtract with variable',"sheet":"sum_var","method":create_sum_diff_var,
               "params":[
                   {'name':'min_sum','min':0,'max':1000,'default':110},
                   {'name':'max_sum','min':0,'max':1000,'default':220}
               ]
-              }
+              },
+              {'name':'3. Multiplication',"sheet":"mult","method":create_mult,
+              "params":[
+                  {'name':'range1_min','min':0,'max':10,'default':1},
+                  {'name':'range1_max','min':0,'max':10,'default':9},
+                  {'name':'range2_min','min':0,'max':10,'default':1},
+                  {'name':'range2_max','min':0,'max':10,'default':9}]},
+             {'name':'4. Division',"sheet":"div","method":create_div,
+              "params":[
+                  {'name':'range1_min','min':0,'max':10,'default':1},
+                  {'name':'range1_max','min':0,'max':10,'default':9},
+                  {'name':'range2_min','min':0,'max':10,'default':1},
+                  {'name':'range2_max','min':0,'max':10,'default':9}]},
+             {'name':'5. Add/subtract with parentheses',"sheet":"parentheses","method":create_sum_diff_w_parentheses,
+              "params":[
+                  {'name':'min_sum','min':0,'max':1000,'default':110},
+                  {'name':'max_sum','min':0,'max':1000,'default':220}
+              ]
+              },
              ]
     MainWindow.show()
     MainWindow.SetExerciseList(ex_list)
