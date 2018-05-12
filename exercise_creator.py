@@ -21,6 +21,12 @@ def create_sum_diff(sheet_name,min_sum,max_sum):
     ex_list=gen.generate_sum_diff(min_sum=min_sum,max_sum=max_sum)
     writer.create_ex_list(sheet_name,ex_list)
 
+
+def create_sum_diff_mult_w_parentheses(sheet_name, min_mult, max_mult, min_sum, max_sum):
+    mult_range = range(min_mult, max_mult + 1)
+    ex_list = gen.generate_mult_sum_diff_parentheses(min_sum=min_sum, max_sum=max_sum, mult_range=mult_range)
+    writer.create_ex_list(sheet_name, ex_list, ex_font_size=18)
+
 def create_sum_diff_w_parentheses(sheet_name,min_sum,max_sum):
     ex_list=gen.generate_sum_diff_with_parentheses(min_sum=min_sum,max_sum=max_sum)
     writer.create_ex_list(sheet_name,ex_list)
@@ -84,6 +90,17 @@ if __name__ == "__main__":
              {'name': 'max_sum', 'min': 0, 'max': 1000, 'default': 220}
          ]
          },
+        {'name': '6. Add/subtract/multiply with parentheses', "sheet": "parentheses_mult",
+         "method": create_sum_diff_mult_w_parentheses,
+         "params": [
+             {'name': 'min_sum', 'min': 0, 'max': 1000, 'default': 110},
+             {'name': 'max_sum', 'min': 0, 'max': 1000, 'default': 220},
+             {'name': 'min_mult', 'min': 1, 'max': 100, 'default': 1},
+             {'name': 'max_mult', 'min': 1, 'max': 100, 'default': 10}
+         ]
+         },
+
+
     ]
     MainWindow.show()
     MainWindow.SetExerciseList(ex_list)

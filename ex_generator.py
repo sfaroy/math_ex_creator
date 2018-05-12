@@ -11,6 +11,71 @@ Written by Roee Sfaradi
 import random
 from random import shuffle
 
+
+# randomize single of the following:
+# a*b+c
+# a*b-c
+# c+a*b
+# c-a*b
+def rand_mult_sum_diff(a, b, min_sum, max_sum, plus_rate=0.5):
+    sum = random.randint(min_sum, max_sum)
+    if random.random() <= plus_rate:
+        if random.random() < 0.5:
+            return "({0} x {1}) + {2} =".format(a, b, sum - a * b)
+        else:
+            return "{2} + ({0} x {1}) =".format(a, b, sum - a * b)
+    else:
+        if random.random() < 0.5:
+            c = random.randint(0, a * b)
+            return "({0} x {1}) - {2} = ".format(a, b, c)
+        else:
+            sum = random.randint(max(min_sum, a * b), max(max_sum, a * b))
+            return "{2} - ({0} x {1}) = ".format(a, b, sum)
+
+
+def rand_sum_diff_mult(mult_a, mult_b, min_sum, max_sum, plus_rate=0.5):
+    if random.random() <= plus_rate:
+        a = random.randint(0, mult_a)
+        b = mult_a - a
+        c = mult_b
+        return "({0} + {1}) x {2} = ".format(a, b, c)
+    else:
+        val_sum = random.randint(min_sum, max_sum)
+        a = val_sum
+        b = val_sum - mult_a
+        c = mult_b
+        return "({0} - {1}) x {2} = ".format(a, b, c)
+
+
+def generate_mult_sum_diff_parentheses(count=60, min_sum=110, max_sum=220, mult_range=range(1, 10), plus_rate=0.5):
+    ex_list = []
+
+    all_perms = []
+
+    for j in mult_range:
+        for k in mult_range:
+            all_perms.append((min(j, k), max(j, k)))
+
+    shuffle(all_perms)
+
+    j = 0
+    for n in range(0, count):
+        i, k = all_perms[j]
+        j = j + 1
+        if j == len(all_perms):
+            j = 0
+            shuffle(all_perms)
+        xx = random.random()
+        if xx < 0.5:
+            i, k = k, i  # swap
+        if random.random() < 0.5:
+            ex = rand_mult_sum_diff(i, k, min_sum, max_sum, plus_rate)
+        else:
+            ex = rand_sum_diff_mult(i, k, min_sum, max_sum, plus_rate)
+        ex_list.append(ex)
+
+    return ex_list
+
 def generate_sum_diff(count=60,min_sum=110,max_sum=220,plus_rate=0.5):
     ex_list=[]
     for i in  range(0,count):
