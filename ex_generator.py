@@ -38,13 +38,19 @@ def rand_sum_diff_mult(mult_a, mult_b, min_sum, max_sum, plus_rate=0.5):
         a = random.randint(0, mult_a)
         b = mult_a - a
         c = mult_b
-        return "({0} + {1}) x {2} = ".format(a, b, c)
+        if random.random() < 0.5:
+            return "({0} + {1}) x {2} = ".format(a, b, c)
+        else:
+            return "{2} x ({0} + {1}) = ".format(a, b, c)
     else:
         val_sum = random.randint(min_sum, max_sum)
         a = val_sum
         b = val_sum - mult_a
         c = mult_b
-        return "({0} - {1}) x {2} = ".format(a, b, c)
+        if random.random() < 0.5:
+            return "({0} - {1}) x {2} = ".format(a, b, c)
+        else:
+            return "{2} x ({0} - {1}) = ".format(a, b, c)
 
 
 def generate_mult_sum_diff_parentheses(count=60, min_sum=110, max_sum=220, mult_range=range(1, 10), plus_rate=0.5):
