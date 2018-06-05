@@ -12,6 +12,66 @@ import random
 from random import shuffle
 
 
+def get_devisor_list(a, max_div):
+    l = []
+    for i in range(1, max_div + 1):
+        if (a % i) == 0 and a / i <= max_div:
+            l.append(i)
+    return l
+
+
+def generate_mult_diff_parentheses(count=60, mult_range=range(1, 10)):
+    ex_list = []
+
+    all_perms = []
+
+    for j in mult_range:
+        for k in mult_range:
+            all_perms.append((min(j, k), max(j, k)))
+
+    shuffle(all_perms)
+
+    j = 0
+    for n in range(0, count):
+        i, k = all_perms[j]
+        j = j + 1
+        if j == len(all_perms):
+            j = 0
+            shuffle(all_perms)
+
+        if random.random() < 0.5:
+            i, k = k, i  # swap
+
+        # {i} x {k}
+
+        if random.random() < 0.5:
+            lst = get_devisor_list(i * k, min(mult_range[-1], i * k) + 1)
+            l = random.randint(0, len(lst) - 1)
+            if lst[l] == i or lst[l] == k or lst[l] == 1:
+                l = random.randint(0, len(lst) - 1)
+            l = lst[l]  # {i} x {k} : {l}
+
+            if random.random() < 0.5:
+                ex = '({0} x {1}) : {2} = '.format(i, k, l)
+            else:
+                ex = '{0} x {1} : {2} = '.format(i, k, l)
+        else:
+            lst = get_devisor_list(k, min(mult_range[-1], k) + 1)
+            l = random.randint(0, len(lst) - 1)
+            if lst[l] == i or lst[l] == 1 or lst[l] == k:
+                l = random.randint(0, len(lst) - 1)
+
+            l = lst[l]  # {k} : {l} x {i}
+
+            if random.random() < 0.5:
+                ex = '({0} : {1}) x {2} = '.format(k, l, i)
+            else:
+                ex = '{0} : {1} x {2} = '.format(k, l, i)
+
+        ex_list.append(ex)
+
+    return ex_list
+
 # randomize single of the following:
 # a*b+c
 # a*b-c
