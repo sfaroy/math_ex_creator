@@ -79,16 +79,16 @@ if __name__ == "__main__":
          },
         {'name': '3. Multiplication', "sheet": "mult", "method": create_mult,
          "params": [
-             {'name': 'range1_min', 'min': 0, 'max': 10, 'default': 1},
-             {'name': 'range1_max', 'min': 0, 'max': 10, 'default': 9},
-             {'name': 'range2_min', 'min': 0, 'max': 10, 'default': 1},
-             {'name': 'range2_max', 'min': 0, 'max': 10, 'default': 9}]},
+             {'name': 'range1_min', 'min': 0, 'max': 20, 'default': 1},
+             {'name': 'range1_max', 'min': 0, 'max': 20, 'default': 10},
+             {'name': 'range2_min', 'min': 0, 'max': 20, 'default': 1},
+             {'name': 'range2_max', 'min': 0, 'max': 20, 'default': 10}]},
         {'name': '4. Division', "sheet": "div", "method": create_div,
          "params": [
-             {'name': 'range1_min', 'min': 0, 'max': 10, 'default': 1},
-             {'name': 'range1_max', 'min': 0, 'max': 10, 'default': 9},
-             {'name': 'range2_min', 'min': 0, 'max': 10, 'default': 1},
-             {'name': 'range2_max', 'min': 0, 'max': 10, 'default': 9}]},
+             {'name': 'range1_min', 'min': 0, 'max': 20, 'default': 1},
+             {'name': 'range1_max', 'min': 0, 'max': 20, 'default': 10},
+             {'name': 'range2_min', 'min': 0, 'max': 20, 'default': 1},
+             {'name': 'range2_max', 'min': 0, 'max': 20, 'default': 10}]},
         {'name': '5. Add/subtract with parentheses', "sheet": "parentheses", "method": create_sum_diff_w_parentheses,
          "params": [
              {'name': 'min_sum', 'min': 0, 'max': 1000, 'default': 110},
@@ -104,7 +104,7 @@ if __name__ == "__main__":
              {'name': 'max_mult', 'min': 1, 'max': 100, 'default': 10}
          ]
          },
-        {'name': '6. Multiply divide with parentheses', "sheet": "mult_div",
+        {'name': '7. Multiply divide with parentheses', "sheet": "mult_div",
          "method": create_mult_diff_parentheses,
          "params": [
              {'name': 'min_mult', 'min': 1, 'max': 100, 'default': 1},

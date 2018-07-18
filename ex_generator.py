@@ -72,6 +72,31 @@ def generate_mult_diff_parentheses(count=60, mult_range=range(1, 10)):
 
     return ex_list
 
+
+# randomize single of the following:
+# a*b+c*d
+def rand_2mult_sum(mult_range):
+    # TODO: we need to actually choose numbers from the range list - not by its limits
+    a = random.randint(mult_range[0], mult_range[-1])
+    b = random.randint(mult_range[0], mult_range[-1])
+    c = random.randint(mult_range[0], mult_range[-1])
+    d = random.randint(mult_range[0], mult_range[-1])
+
+    if random.random() < 0.5:
+        exp1 = "({0} x {1})".format(a, b)
+    else:
+        exp1 = "{0} x {1}".format(a, b)
+
+    if random.random() < 0.5:
+        exp2 = "({0} x {1})".format(c, d)
+    else:
+        exp2 = "{0} x {1}".format(c, d)
+
+    ex = "{0} + {1} = ".format(exp1, exp2)
+
+    return ex
+
+
 # randomize single of the following:
 # a*b+c
 # a*b-c
@@ -112,7 +137,6 @@ def rand_sum_diff_mult(mult_a, mult_b, min_sum, max_sum, plus_rate=0.5):
         else:
             return "{2} x ({0} - {1}) = ".format(a, b, c)
 
-
 def generate_mult_sum_diff_parentheses(count=60, min_sum=110, max_sum=220, mult_range=range(1, 10), plus_rate=0.5):
     ex_list = []
 
@@ -135,7 +159,11 @@ def generate_mult_sum_diff_parentheses(count=60, min_sum=110, max_sum=220, mult_
         if xx < 0.5:
             i, k = k, i  # swap
         if random.random() < 0.5:
-            ex = rand_mult_sum_diff(i, k, min_sum, max_sum, plus_rate)
+            if random.random() < 0.5:
+                ex = rand_mult_sum_diff(i, k, min_sum, max_sum, plus_rate)
+            else:
+                ex = rand_2mult_sum(mult_range)
+
         else:
             ex = rand_sum_diff_mult(i, k, min_sum, max_sum, plus_rate)
         ex_list.append(ex)
