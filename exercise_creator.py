@@ -18,8 +18,8 @@ from xls_writer import exercise_xls_writer
 writer=exercise_xls_writer()
 
 
-def create_mult_diff_parentheses(sheet_name, min_mult, max_mult):
-    ex_list = gen.generate_mult_diff_parentheses(mult_range=range(min_mult, max_mult + 1))
+def create_mult_div_parentheses(sheet_name, min_mult, max_mult):
+    ex_list = gen.generate_mult_div_parentheses(mult_range=range(min_mult, max_mult + 1))
     writer.create_ex_list(sheet_name, ex_list, ex_font_size=18)
 
 def create_sum_diff(sheet_name,min_sum,max_sum):
@@ -105,7 +105,7 @@ if __name__ == "__main__":
          ]
          },
         {'name': '7. Multiply divide with parentheses', "sheet": "mult_div",
-         "method": create_mult_diff_parentheses,
+         "method": create_mult_div_parentheses,
          "params": [
              {'name': 'min_mult', 'min': 1, 'max': 100, 'default': 1},
              {'name': 'max_mult', 'min': 1, 'max': 100, 'default': 10}

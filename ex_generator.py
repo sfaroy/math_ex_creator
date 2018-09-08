@@ -20,7 +20,7 @@ def get_devisor_list(a, max_div):
     return l
 
 
-def generate_mult_diff_parentheses(count=60, mult_range=range(1, 10)):
+def generate_mult_div_parentheses(count=60, mult_range=range(1, 10)):
     ex_list = []
 
     all_perms = []
@@ -64,7 +64,11 @@ def generate_mult_diff_parentheses(count=60, mult_range=range(1, 10)):
             l = lst[l]  # {k} : {l} x {i}
 
             if random.random() < 0.5:
-                ex = '({0} : {1}) x {2} = '.format(k, l, i)
+                if random.random() < 0.5:
+                    ex = '({0} : {1}) x {2} = '.format(k, l, i)
+                else:
+                    ex = '{2} x ({0} : {1}) = '.format(k, l, i)
+
             else:
                 ex = '{0} : {1} x {2} = '.format(k, l, i)
 
@@ -137,6 +141,7 @@ def rand_sum_diff_mult(mult_a, mult_b, min_sum, max_sum, plus_rate=0.5):
         else:
             return "{2} x ({0} - {1}) = ".format(a, b, c)
 
+
 def generate_mult_sum_diff_parentheses(count=60, min_sum=110, max_sum=220, mult_range=range(1, 10), plus_rate=0.5):
     ex_list = []
 
@@ -177,7 +182,7 @@ def generate_sum_diff(count=60,min_sum=110,max_sum=220,plus_rate=0.5):
         a=random.randint(0,sum)
         xx=random.random()
         if xx<plus_rate:
-            b=sum-a;
+            b = sum - a
             ex="{0}+{1}=".format(a,b)
         else:
             ex="{0}-{1}=".format(sum,a)
