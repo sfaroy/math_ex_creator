@@ -45,6 +45,13 @@ def create_mult(sheet_name, range1_min, range1_max, range2_min, range2_max):
     ex_list=gen.generate_mult(range1=range(range1_min,range1_max+1), range2=range(range2_min,range2_max+1))
     writer.create_ex_list(sheet_name,ex_list)
 
+
+def create_mult_div_var(sheet_name, range_min, range_max):
+    ex_list = gen.generate_mult_div_var(var_range=range(range_min, range_max + 1))
+    writer.create_ex_list(sheet_name, ex_list)
+
+
+
 def create_div(sheet_name, range1_min, range1_max, range2_min, range2_max):
     ex_list=gen.generate_div(range1=range(range1_min,range1_max+1), range2=range(range2_min,range2_max+1))
     writer.create_ex_list(sheet_name,ex_list)
@@ -89,13 +96,17 @@ if __name__ == "__main__":
              {'name': 'range1_max', 'min': 0, 'max': 20, 'default': 10},
              {'name': 'range2_min', 'min': 0, 'max': 20, 'default': 1},
              {'name': 'range2_max', 'min': 0, 'max': 20, 'default': 10}]},
-        {'name': '5. Add/subtract with parentheses', "sheet": "parentheses", "method": create_sum_diff_w_parentheses,
+        {'name': '5. Mult/Div with variables', "sheet": "mult_div_var", "method": create_mult_div_var,
+         "params": [
+             {'name': 'range_min', 'min': 0, 'max': 20, 'default': 1},
+             {'name': 'range_max', 'min': 0, 'max': 20, 'default': 10}]},
+        {'name': '6. Add/subtract with parentheses', "sheet": "parentheses", "method": create_sum_diff_w_parentheses,
          "params": [
              {'name': 'min_sum', 'min': 0, 'max': 1000, 'default': 110},
              {'name': 'max_sum', 'min': 0, 'max': 1000, 'default': 220}
          ]
          },
-        {'name': '6. Add/subtract/multiply with parentheses', "sheet": "parentheses_mult",
+        {'name': '7. Add/subtract/multiply with parentheses', "sheet": "parentheses_mult",
          "method": create_sum_diff_mult_w_parentheses,
          "params": [
              {'name': 'min_sum', 'min': 0, 'max': 1000, 'default': 110},
@@ -104,7 +115,7 @@ if __name__ == "__main__":
              {'name': 'max_mult', 'min': 1, 'max': 100, 'default': 10}
          ]
          },
-        {'name': '7. Multiply divide with parentheses', "sheet": "mult_div",
+        {'name': '8. Multiply divide with parentheses', "sheet": "mult_div",
          "method": create_mult_div_parentheses,
          "params": [
              {'name': 'min_mult', 'min': 1, 'max': 100, 'default': 1},

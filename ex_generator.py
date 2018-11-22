@@ -234,6 +234,51 @@ def generate_sum_diff_with_parentheses(count=60,min_sum=110,max_sum=220,plus_rat
     return ex_list
 
 
+def generate_mult_div_var(count=60, var_range=range(1, 10)):
+    ex_list = []
+
+    all_perms = []
+
+    for j in var_range:
+        for k in var_range:
+            all_perms.append((min(j, k), max(j, k)))
+
+            #  all_perms_set=set(all_perms)
+            #  all_perms=list(all_perms_set) #make this list unique
+
+    shuffle(all_perms)
+
+    this_count = min(count, len(all_perms))
+
+    j = 0
+    for n in range(0, count):
+        i, k = all_perms[j]
+        j = j + 1
+        if j == len(all_perms):
+            j = 0
+            shuffle(all_perms)
+        xx = random.random()
+        if xx < 0.5:
+            i, k = k, i  # swap
+        if random.random() < 0.5:
+            if random.random() < 0.5:
+                ex = "{0} x ___ = {1}".format(i, k * i)
+            else:
+                ex = "___ x {0} = {1}".format(i, k * i)
+        else:
+            if random.random() < 0.5:
+                ex = "{0} : ___ = {1}".format(i * k, i)
+            else:
+                ex = "___ : {0} = {1}".format(i, k)
+
+        ex_list.append(ex)
+
+    if this_count < count:  # fill rest of the list with empty spaces
+        for i in range(0, count - this_count):
+            ex_list.append("")
+
+    return ex_list
+
 
 def generate_mult(count=60,range1=range(1,10),range2=range(1,10)):
     ex_list=[]
