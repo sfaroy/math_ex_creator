@@ -11,7 +11,7 @@ Written by Roee Sfaradi
 import xlwt
 
 
-def get_styles(ex_font_size=24):
+def get_styles_standard(ex_font_size=24):
     styles = {}
     text_font = xlwt.Font()
     num_font = xlwt.Font()
@@ -146,12 +146,40 @@ def get_styles(ex_font_size=24):
     styles['num_style_top_left'] = num_style_top_left
     return styles
 
+
+def get_styles_vertical(ex_font_size=16):
+    styles = {}
+    text_font = xlwt.Font()
+    num_font = xlwt.Font()
+    borders_text = xlwt.Borders()
+
+    style_num = xlwt.XFStyle()
+    style_text = xlwt.XFStyle()
+
+    text_font.name = "Courier New"
+    text_font.height = ex_font_size * 20
+    num_font.name = "Arial"
+    num_font.height = ex_font_size * 20
+
+    borders_text.bottom = xlwt.Borders.THIN
+
+    style_text.font = text_font
+    style_text.borders = borders_text
+    style_text.alignment.wrap = 1
+
+    style_num.font = num_font
+
+    styles['style_text'] = style_text
+    styles['style_num'] = style_num
+
+    return styles
+
 class exercise_xls_writer():
     def __init__(self):
         self.workbook=xlwt.Workbook()
 
     def create_ex_list(self, sheet_name, ex_list, ex_font_size=24):
-        s = get_styles(ex_font_size)
+        s = get_styles_standard(ex_font_size)
         sheet=self.workbook.add_sheet(sheet_name)
 
         sheet.write(0, 0, "{0}".format(1), style=s['num_style_top_left'])
@@ -179,6 +207,39 @@ class exercise_xls_writer():
         sheet.col(3).width=10400
         sheet.fit_num_pages=1
         return
+
+    def create_ex_list_vertical(self, sheet_name, ex_list, ex_font_size=16):
+        s = get_styles_vertical(ex_font_size)
+        sheet = self.workbook.add_sheet(sheet_name)
+
+        n = 10
+        N = n * 3
+
+        for i in range(0, n):
+            sheet.write(2 * i, 0, "{0}".format(i + 1), style=s['style_num'])
+            sheet.write(2 * i, 3, "{0}".format(i + 11), style=s['style_num'])
+            sheet.write(2 * i, 6, "{0}".format(i + 21), style=s['style_num'])
+
+            sheet.write(2 * i, 1, ex_list[i], style=s['style_text'])
+            sheet.write(2 * i, 4, ex_list[i + 10], style=s['style_text'])
+            sheet.write(2 * i, 7, ex_list[i + 20], style=s['style_text'])
+            sheet.row(2 * i).height = 2050
+            if i < n - 1:
+                sheet.row(2 * i + 1).height = 30 * 20
+                sheet.row(2 * i + 1).height_mismatch = True
+
+        sheet.col(0).width = 1208
+        sheet.col(1).width = 4138
+        sheet.col(2).width = 2636
+        sheet.col(3).width = 1208
+        sheet.col(4).width = 4138
+        sheet.col(5).width = 2636
+        sheet.col(6).width = 1208
+        sheet.col(7).width = 4138
+        sheet.fit_num_pages = 1
+        return
+
+
     def write(self,name):
         self.workbook.save(name)
     

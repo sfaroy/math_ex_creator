@@ -12,6 +12,22 @@ import random
 from random import shuffle
 
 
+def generate_vertical_sub(count=30, min_val=1000, max_val=9999):
+    list = []
+    for i in range(0, count):
+        val1 = random.randint(min_val, max_val)
+        val2 = random.randint(min_val, max_val)
+
+        if val2 > val1:
+            val1, val2 = val2, val1
+
+        text = " {0}\n-{1}".format(val1, val2)
+        list.append(text)
+
+    return list
+
+
+
 def get_devisor_list(a, max_div):
     l = []
     for i in range(1, max_div + 1):
@@ -121,6 +137,98 @@ def rand_mult_sum_diff(a, b, min_sum, max_sum, plus_rate=0.5):
             sum = random.randint(max(min_sum, a * b), max(max_sum, a * b))
             return "{2} - ({0} x {1}) = ".format(a, b, sum)
 
+
+def integer_decompose(n):
+    fact = []
+    i = 2
+    stop_value = round(sqrt(n))
+    while i <= stop_value:
+        if n % i == 0:
+            fact.append(i)
+            n //= i
+            stop_value = int(round(sqrt(n)))
+        else:
+            i += 1
+    fact.append(n)
+    return fact
+
+
+def rand_according_to_list(prob_list):
+    x = random.rand()
+    for i in range(0, len(prob_list)):
+        if x < prob_list[i]:
+            return i
+
+    return len(prob_list) - 1
+
+
+def generate_mult_sum_diff_parentheses_2(count=60, max_mult=100, plus_rate=0.5):
+    div_counts = [0]
+    prob_list = [0.0]
+    div_counts_sum = 0
+    for i in range(1, max_mult):
+        divs = integer_decompose(i)
+        div_counts = divs.append(len(divs))
+        div_counts_sum += len(divs)
+
+    div_counts_sum = float(div_counts_sum)
+    for i in range(1, max_mult):
+        prob_list.append(float(i) / div_counts_sum)
+        prob_list[-1] = prob_list[-1] + prob_list[-2]
+
+    ex_list = []
+
+    all_perms = []
+
+    for j in mult_range:
+        for k in mult_range:
+            all_perms.append((min(j, k), max(j, k)))
+
+    shuffle(all_perms)
+
+    j = 0
+    for n in range(0, count):
+        i, k = all_perms[j]
+        j = j + 1
+        if j == len(all_perms):
+            j = 0
+            shuffle(all_perms)
+        xx = random.random()
+        if xx < 0.5:
+            i, k = k, i  # swap
+        if random.random() < 0.5:
+            if random.random() < 0.5:
+                ex = rand_mult_sum_diff(i, k, min_sum, max_sum, plus_rate)
+            else:
+                ex = rand_2mult_sum(mult_range)
+
+        else:
+            ex = rand_sum_diff_mult(i, k, min_sum, max_sum, plus_rate)
+        ex_list.append(ex)
+
+    return ex_list
+
+
+def rand_sum_diff_mult2(max_mult, plus_rate=0.5):
+    mult_value = rand_according_to_list(prob_list)
+
+    if random.random() <= plus_rate:
+        a = random.randint(0, mult_a)
+        b = mult_a - a
+        c = mult_b
+        if random.random() < 0.5:
+            return "({0} + {1}) x {2} = ".format(a, b, c)
+        else:
+            return "{2} x ({0} + {1}) = ".format(a, b, c)
+    else:
+        val_sum = random.randint(min_sum, max_sum)
+        a = val_sum
+        b = val_sum - mult_a
+        c = mult_b
+        if random.random() < 0.5:
+            return "({0} - {1}) x {2} = ".format(a, b, c)
+        else:
+            return "{2} x ({0} - {1}) = ".format(a, b, c)
 
 def rand_sum_diff_mult(mult_a, mult_b, min_sum, max_sum, plus_rate=0.5):
     if random.random() <= plus_rate:

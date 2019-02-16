@@ -57,6 +57,11 @@ def create_div(sheet_name, range1_min, range1_max, range2_min, range2_max):
     writer.create_ex_list(sheet_name,ex_list)
 
 
+def create_vertical_sub(sheet_name, range_min, range_max):
+    ex_list = gen.generate_vertical_sub(min_val=range_min, max_val=range_max)
+    writer.create_ex_list_vertical(sheet_name, ex_list)
+
+
 if __name__ == "__main__":
     import sys
     if not QtWidgets.QApplication.instance():
@@ -120,6 +125,13 @@ if __name__ == "__main__":
          "params": [
              {'name': 'min_mult', 'min': 1, 'max': 100, 'default': 1},
              {'name': 'max_mult', 'min': 1, 'max': 100, 'default': 10}
+         ]
+         },
+        {'name': '9. Vertical subtract', "sheet": "vert_sub",
+         "method": create_vertical_sub,
+         "params": [
+             {'name': 'range_min', 'min': 1000, 'max': 9999, 'default': 1000},
+             {'name': 'range_max', 'min': 1000, 'max': 9999, 'default': 9999}
          ]
          }
     ]
