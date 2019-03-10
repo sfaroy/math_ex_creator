@@ -10,19 +10,34 @@ Written by Roee Sfaradi
 
 import random
 from random import shuffle
+import numpy as np
 
 
-def generate_vertical_sub(count=30, min_val=1000, max_val=9999):
+def generate_vertical_sub(count=30, min_val=1000, max_val=9999, more_zeros=0):
     list = []
-    for i in range(0, count):
+    num_of_digits = int(np.ceil(np.log(max_val + 1) / np.log(10)))
+    i = 0
+    while i < count:
         val1 = random.randint(min_val, max_val)
         val2 = random.randint(min_val, max_val)
+
 
         if val2 > val1:
             val1, val2 = val2, val1
 
+        if more_zeros > 0:
+            digit_to_zero = random.randint(0, num_of_digits - 2)
+            digit = val1
+            if digit_to_zero > 0:
+                digit = int(np.floor(digit / (10 ** digit_to_zero)))
+            digit = np.mod(digit, 10)
+            val1 = val1 - (10 ** digit_to_zero) * digit
+            if val1 < val2:
+                continue  # try again
+
         text = " {0}\n-{1}".format(val1, val2)
         list.append(text)
+        i +=1
 
     return list
 

@@ -57,8 +57,8 @@ def create_div(sheet_name, range1_min, range1_max, range2_min, range2_max):
     writer.create_ex_list(sheet_name,ex_list)
 
 
-def create_vertical_sub(sheet_name, range_min, range_max):
-    ex_list = gen.generate_vertical_sub(min_val=range_min, max_val=range_max)
+def create_vertical_sub(sheet_name, range_min, range_max, more_zeros):
+    ex_list = gen.generate_vertical_sub(min_val=range_min, max_val=range_max, more_zeros=more_zeros)
     writer.create_ex_list_vertical(sheet_name, ex_list)
 
 
@@ -131,7 +131,8 @@ if __name__ == "__main__":
          "method": create_vertical_sub,
          "params": [
              {'name': 'range_min', 'min': 1000, 'max': 9999, 'default': 1000},
-             {'name': 'range_max', 'min': 1000, 'max': 9999, 'default': 9999}
+             {'name': 'range_max', 'min': 1000, 'max': 9999, 'default': 9999},
+             {'name': 'more_zeros', 'min': 0, 'max': 1, 'default': 0}
          ]
          }
     ]
