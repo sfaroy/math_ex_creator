@@ -9,8 +9,38 @@ Written by Roee Sfaradi
 # %%
 
 import random
+from random import randint
 from random import shuffle
 import numpy as np
+
+
+def generate_measurements1(count=60, min_val=1, max_val=100, level_dist=1):
+    measure_list = [
+        ("מילימטר", 1E-3),
+        ("סנטימטר", 1E-2),
+        ("מטר", 1),
+        ("קילומטר", 1000)
+    ]
+
+    list = []
+    listlen = len(measure_list)
+    for i in range(0, count):
+        idx1 = randint(0, listlen - 2)
+        idx2 = randint(idx1 + 1, idx1 + level_dist)
+        idx2 = min(idx2, listlen - 1)
+
+        num = randint(min_val, max_val)
+        measure1 = measure_list[idx1][0]
+        measure2 = measure_list[idx2][0]
+        if random.random() < 0.5:
+            ex = "{1} {0} =  _______ {2}".format(measure2, num, measure1)
+        else:
+            ex = " _______  {2} = {1} {0}".format(measure2, num, measure1)
+
+        list.append(ex)
+
+    return list
+
 
 
 def generate_vertical_sub(count=30, min_val=1000, max_val=9999, more_zeros=0):
