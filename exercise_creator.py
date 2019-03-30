@@ -62,8 +62,9 @@ def create_vertical_sub(sheet_name, range_min, range_max, more_zeros):
     writer.create_ex_list_vertical(sheet_name, ex_list)
 
 
-def create_measurements(sheet_name, min_val, max_val, level_dist):
-    ex_list = gen.generate_measurements1(min_val=min_val, max_val=max_val, level_dist=level_dist)
+def create_measurements(sheet_name, min_val, max_val, level_dist, both_directions):
+    ex_list = gen.generate_measurements1(min_val=min_val, max_val=max_val, level_dist=level_dist,
+                                         both_directions=both_directions)
     writer.create_ex_list(sheet_name, ex_list)
 
 
@@ -145,7 +146,8 @@ if __name__ == "__main__":
          "params": [
              {'name': 'min_val', 'min': 1, 'max': 100, 'default': 1},
              {'name': 'max_val', 'min': 1, 'max': 100, 'default': 1},
-             {'name': 'level_dist', 'min': 1, 'max': 4, 'default': 1}
+             {'name': 'level_dist', 'min': 1, 'max': 4, 'default': 1},
+             {'name': 'both_directions', 'min': 0, 'max': 1, 'default': 0}
          ]
          }
     ]

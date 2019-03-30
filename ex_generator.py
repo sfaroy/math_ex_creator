@@ -14,7 +14,7 @@ from random import shuffle
 import numpy as np
 
 
-def generate_measurements1(count=60, min_val=1, max_val=100, level_dist=1):
+def generate_measurements1(count=60, min_val=1, max_val=100, level_dist=1, both_directions=0):
     measure_list = [
         ("מילימטר", 1E-3),
         ("סנטימטר", 1E-2),
@@ -32,10 +32,19 @@ def generate_measurements1(count=60, min_val=1, max_val=100, level_dist=1):
         num = randint(min_val, max_val)
         measure1 = measure_list[idx1][0]
         measure2 = measure_list[idx2][0]
-        if random.random() < 0.5:
-            ex = "{1} {0} =  _______ {2}".format(measure2, num, measure1)
+
+        conv = measure_list[idx2][1] / measure_list[idx1][1]
+
+        if both_directions == 0 or random.random() < 0.5:
+            if random.random() < 0.5:
+                ex = "{1} {0} =  _______ {2}".format(measure2, num, measure1)
+            else:
+                ex = " _______  {2} = {1} {0}".format(measure2, num, measure1)
         else:
-            ex = " _______  {2} = {1} {0}".format(measure2, num, measure1)
+            if random.random() < 0.5:
+                ex = "{1} {0} =  _______ {2}".format(measure1, int(num * conv), measure2)
+            else:
+                ex = " _______  {2} = {1} {0}".format(measure1, int(num * conv), measure2)
 
         list.append(ex)
 
