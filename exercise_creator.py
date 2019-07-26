@@ -62,6 +62,11 @@ def create_vertical_sub(sheet_name, range_min, range_max, more_zeros):
     writer.create_ex_list_vertical(sheet_name, ex_list)
 
 
+def create_vertical_mult_3digits_single(sheet_name, conversion_difficulty):
+    ex_list = gen.generate_vertical_mult_3digits_single(conversion_difficulty=conversion_difficulty)
+    writer.create_ex_list_vertical(sheet_name, ex_list)
+
+
 def create_measurements(sheet_name, min_val, max_val, level_dist, both_directions):
     ex_list = gen.generate_measurements1(min_val=min_val, max_val=max_val, level_dist=level_dist,
                                          both_directions=both_directions)
@@ -141,7 +146,13 @@ if __name__ == "__main__":
              {'name': 'more_zeros', 'min': 0, 'max': 1, 'default': 0}
          ]
          },
-        {'name': '9. Measurements', "sheet": "measure",
+        {'name': '10. Vertical multiply with conversion', "sheet": "vert_mult_conv",
+         "method": create_vertical_mult_3digits_single,
+         "params": [
+             {'name': 'conversion_difficulty', 'min': 0, 'max': 3, 'default': 1}
+         ]
+         },
+        {'name': '11. Measurements', "sheet": "measure",
          "method": create_measurements,
          "params": [
              {'name': 'min_val', 'min': 1, 'max': 100, 'default': 1},

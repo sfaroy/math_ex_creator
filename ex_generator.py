@@ -51,6 +51,45 @@ def generate_measurements1(count=60, min_val=1, max_val=100, level_dist=1, both_
     return list
 
 
+def generate_vertical_mult_3digits_single(count=30, conversion_difficulty=0):
+    i = 0
+    list = []
+    while i < count:
+        if conversion_difficulty == 0:
+            down_digit = random.randint(1, 9)
+        else:  # so there is a conversion
+            down_digit = random.randint(2, 9)
+
+        no_conversion_max_digit = int(9 / down_digit)
+        conversion_min_digit = min(9, int(9 / down_digit) + 1)
+
+        max_digit = 9
+        min_digit = 0
+        if conversion_difficulty == 0 or conversion_difficulty == 2:  # no conversion, only second conversion
+            max_digit = no_conversion_max_digit
+        else:
+            min_digit = conversion_min_digit
+
+        digit1 = random.randint(min_digit, max_digit)
+
+        max_digit = 9
+        min_digit = 0
+        if conversion_difficulty == 0 or conversion_difficulty == 1:  # no conversion, only first conversion
+            max_digit = no_conversion_max_digit
+        else:
+            min_digit = conversion_min_digit
+
+        digit10 = random.randint(min_digit, max_digit)
+        digit100 = random.randint(1, 9)
+
+        num_up = digit1 + 10 * digit10 + 100 * digit100
+        text = " {0}\nx  {1}".format(num_up, down_digit)
+        list.append(text)
+        i += 1
+    return list
+
+
+
 
 def generate_vertical_sub(count=30, min_val=1000, max_val=9999, more_zeros=0):
     list = []
