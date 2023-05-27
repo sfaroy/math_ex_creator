@@ -185,21 +185,22 @@ class exercise_xls_writer():
         sheet.write(0, 0, "{0}".format(1), style=s['num_style_top_left'])
         sheet.write(0, 2, "{0}".format(31), style=s['num_style_top_right'])
 
+        count = len(ex_list)
+        countd2 = count//2
         sheet.write(0, 1, ex_list[0], style=s['text_style_top_left'])
-        sheet.write(0, 3, ex_list[30], style=s['text_style_top_right'])
+        sheet.write(0, 3, ex_list[countd2], style=s['text_style_top_right'])
 
-
-        for i in range(1,29):
+        for i in range(1,countd2-1):
             sheet.write(i, 0, "{0}".format(i + 1), style=s['num_style_left'])
             sheet.write(i, 1, ex_list[i], style=s['text_style_left'])
-            sheet.write(i, 2, "{0}".format(i + 31), style=s['num_style_right'])
-            sheet.write(i, 3, ex_list[i + 30], style=s['text_style_right'])
+            sheet.write(i, 2, "{0}".format(i + countd2+1), style=s['num_style_right'])
+            sheet.write(i, 3, ex_list[i + countd2], style=s['text_style_right'])
 
-        sheet.write(29, 0, "{0}".format(30), style=s['num_style_bot_left'])
-        sheet.write(29, 2, "{0}".format(60), style=s['num_style_bot_right'])
+        sheet.write(countd2-1, 0, "{0}".format(countd2), style=s['num_style_bot_left'])
+        sheet.write(countd2-1, 2, "{0}".format(count), style=s['num_style_bot_right'])
 
-        sheet.write(29, 1, ex_list[29], style=s['text_style_bot_left'])
-        sheet.write(29, 3, ex_list[59], style=s['text_style_bot_right'])
+        sheet.write(countd2-1, 1, ex_list[countd2-1], style=s['text_style_bot_left'])
+        sheet.write(countd2-1, 3, ex_list[count-1], style=s['text_style_bot_right'])
 
         sheet.col(0).width=1800
         sheet.col(1).width=10400

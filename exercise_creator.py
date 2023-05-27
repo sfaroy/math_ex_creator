@@ -22,8 +22,8 @@ def create_mult_div_parentheses(sheet_name, min_mult, max_mult):
     ex_list = gen.generate_mult_div_parentheses(mult_range=range(min_mult, max_mult + 1))
     writer.create_ex_list(sheet_name, ex_list, ex_font_size=18)
 
-def create_sum_diff(sheet_name,min_sum,max_sum):
-    ex_list=gen.generate_sum_diff(min_sum=min_sum,max_sum=max_sum)
+def create_sum_diff(sheet_name,min_sum,max_sum,ex_count):
+    ex_list=gen.generate_sum_diff(min_sum=min_sum,max_sum=max_sum,count=ex_count)
     writer.create_ex_list(sheet_name,ex_list)
 
 
@@ -36,13 +36,13 @@ def create_sum_diff_w_parentheses(sheet_name,min_sum,max_sum):
     ex_list=gen.generate_sum_diff_with_parentheses(min_sum=min_sum,max_sum=max_sum)
     writer.create_ex_list(sheet_name,ex_list)
 
-def create_sum_diff_var(sheet_name,min_sum,max_sum):
-    ex_list=gen.generate_sumdiff_variable(min_sum=min_sum,max_sum=max_sum)
+def create_sum_diff_var(sheet_name,min_sum,max_sum,ex_count):
+    ex_list=gen.generate_sumdiff_variable(min_sum=min_sum,max_sum=max_sum,count=ex_count)
     writer.create_ex_list(sheet_name,ex_list)
 
 
-def create_mult(sheet_name, range1_min, range1_max, range2_min, range2_max):
-    ex_list=gen.generate_mult(range1=range(range1_min,range1_max+1), range2=range(range2_min,range2_max+1))
+def create_mult(sheet_name, range1_min, range1_max, range2_min, range2_max,ex_count):
+    ex_list=gen.generate_mult(range1=range(range1_min,range1_max+1), range2=range(range2_min,range2_max+1),count=ex_count)
     writer.create_ex_list(sheet_name,ex_list)
 
 
@@ -91,13 +91,15 @@ if __name__ == "__main__":
         {'name': '1. Add/subtract', "sheet": "sum", "method": create_sum_diff,
          "params": [
              {'name': 'min_sum', 'min': 0, 'max': 1000, 'default': 110},
-             {'name': 'max_sum', 'min': 0, 'max': 1000, 'default': 220}
+             {'name': 'max_sum', 'min': 0, 'max': 1000, 'default': 220},
+             {'name': 'ex_count', 'min': 0, 'max': 60, 'default': 60}
          ]
          },
         {'name': '2. Add/Subtract with variable', "sheet": "sum_var", "method": create_sum_diff_var,
          "params": [
              {'name': 'min_sum', 'min': 0, 'max': 1000, 'default': 110},
-             {'name': 'max_sum', 'min': 0, 'max': 1000, 'default': 220}
+             {'name': 'max_sum', 'min': 0, 'max': 1000, 'default': 220},
+             {'name': 'ex_count', 'min': 0, 'max': 60, 'default': 60}
          ]
          },
         {'name': '3. Multiplication', "sheet": "mult", "method": create_mult,
@@ -105,7 +107,8 @@ if __name__ == "__main__":
              {'name': 'range1_min', 'min': 0, 'max': 20, 'default': 1},
              {'name': 'range1_max', 'min': 0, 'max': 20, 'default': 10},
              {'name': 'range2_min', 'min': 0, 'max': 20, 'default': 1},
-             {'name': 'range2_max', 'min': 0, 'max': 20, 'default': 10}]},
+             {'name': 'range2_max', 'min': 0, 'max': 20, 'default': 10},
+             {'name': 'ex_count', 'min': 0, 'max': 60, 'default': 60}]},
         {'name': '4. Division', "sheet": "div", "method": create_div,
          "params": [
              {'name': 'range1_min', 'min': 0, 'max': 20, 'default': 1},
