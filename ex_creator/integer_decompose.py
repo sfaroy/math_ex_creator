@@ -6,8 +6,8 @@ Created on Tue Nov 27 06:45:55 2018
 from pylab import sqrt
 
 
-def integer_decompose(n):
-    fact = []
+def integer_decompose(n:int) -> list[int]:
+    fact:list[int] = []
     i = 2
     stop_value = round(sqrt(n))
     while i <= stop_value:
@@ -21,4 +21,3 @@ def integer_decompose(n):
     return fact
 
 
-print(integer_decompose(64))
