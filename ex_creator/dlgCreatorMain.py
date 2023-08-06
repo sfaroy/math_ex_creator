@@ -60,9 +60,9 @@ class DialogCreatorMain(QMainWindow):
         self.ui.lstExercises.addItem(ex_name)
         if 'params' in ex:
             d=self.ui.wgtParams.get_result()
-            ex['method'](ex_name,**d)
+            ex['method'](ex_name,self.writer,**d)
         else:
-            ex['method'](ex_name)
+            ex['method'](ex_name,self.writer)
         self.ex_idx=self.ex_idx+1
 
     def SetExerciseList(self,ex_list):
