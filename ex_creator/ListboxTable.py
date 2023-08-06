@@ -7,10 +7,10 @@ ListboxTable.py
 Licensed under the MIT License (see LICENSE for details)
 Written by Roee Sfaradi
 """
-# %%
 
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QTableWidgetItem,QTableWidget,QAbstractItemView,QAbstractScrollArea
+from typing_extensions import Self
 
 class NumericTableWidgetItem(QTableWidgetItem):
     def __init__(self,text,sortKey):
@@ -18,7 +18,7 @@ class NumericTableWidgetItem(QTableWidgetItem):
         self.sortKey=sortKey
 
     #QT uses a simple < check for sorting items, override this to use the sortKey
-    def __lt__(self,other):
+    def __lt__(self,other:Self):
         return self.sortKey < other.sortKey
 
 
@@ -37,7 +37,7 @@ class ListboxTable(QTableWidget):
         self.data=data
         horHeaders =[]
         self.setColumnCount(len(self.data.keys()))
-        self.setRowCOunt(len(self.data[self.data.keys()[0]]))
+        self.setRowCount(len(self.data[self.data.keys()[0]]))
 
         for n,key in enumerate(self.data.keys()):
             horHeaders.append(key)
@@ -56,6 +56,8 @@ if __name__ == "__main__":
         app = QtWidgets.QApplication(sys.argv)
     else:
         app = QtWidgets.QApplication.instance()
+    assert isinstance(app,QtWidgets.QApplication)
+
     data=OrderedDict()
     data['col1']=['1','2','3']
     data['col2']=['3','4','5']

@@ -126,6 +126,8 @@ if __name__ == "__main__":
         app = QtWidgets.QApplication(sys.argv)
     else:
         app = QtWidgets.QApplication.instance()
+    
+    assert isinstance(app,QtWidgets.QApplication)
     MainWindow = Configurator()
     MainWindow.set_parameters([{'name':'param1','min':0,'max':10,'default':4},{'name':'param2','min':0,'max':20,'default':6}])
     MainWindow.set_parameters([{'name':'aaa','min':-20,'max':10,'default':4}])

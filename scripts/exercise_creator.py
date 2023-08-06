@@ -81,6 +81,7 @@ if __name__ == "__main__":
         app = QtWidgets.QApplication(sys.argv)
     else:
         app = QtWidgets.QApplication.instance()
+    assert isinstance(app,QtWidgets.QApplication)
     app_icon = QtGui.QIcon()
     app_icon.addFile('gui/icons/16x16.png', QtCore.QSize(16,16))
     app_icon.addFile('gui/icons/24x24.png', QtCore.QSize(24,24))

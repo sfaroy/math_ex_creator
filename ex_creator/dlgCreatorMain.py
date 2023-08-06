@@ -78,6 +78,8 @@ if __name__ == "__main__":
         app = QtWidgets.QApplication(sys.argv)
     else:
         app = QtWidgets.QApplication.instance() 
+    
+    assert isinstance(app,QtWidgets.QApplication)
     writer=exercise_xls_writer()
     MainWindow = DialogCreatorMain(writer)
     ex_list=[{'name':'exercise1'},{'name':'exercise2'}]
