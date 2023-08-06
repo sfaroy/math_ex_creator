@@ -1,2 +1,2 @@
-call c:\ProgramData\Anaconda3\Library\bin\pyuic5.bat -x  dlgCreatorMain.ui -o dlgCreatorMainUi.py
+call D:\Utils\anaconda3\Library\bin\pyuic5.bat -x  ex_creator\dlgCreatorMain.ui -o ex_creator\dlgCreatorMainUi.py
 pause

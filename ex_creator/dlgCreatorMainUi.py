@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'dlgCreatorMain.ui'
+# Form implementation generated from reading ui file 'ex_creator\dlgCreatorMain.ui'
 #
-# Created by: PyQt5 UI code generator 5.6
+# Created by: PyQt5 UI code generator 5.9.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -13,7 +13,7 @@ from .ListWidgetWithEvent import ListWidgetWithEvent
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(837, 600)
+        MainWindow.resize(837, 660)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
@@ -44,6 +44,13 @@ class Ui_MainWindow(object):
         self.txtFilter.setObjectName("txtFilter")
         self.horizontalLayout_3.addWidget(self.txtFilter)
         self.verticalLayout.addLayout(self.horizontalLayout_3)
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.chkAggregate = QtWidgets.QCheckBox(self.centralwidget)
+        self.chkAggregate.setObjectName("chkAggregate")
+        self.horizontalLayout.addWidget(self.chkAggregate)
+        self.horizontalLayout.setStretch(0, 4)
+        self.verticalLayout.addLayout(self.horizontalLayout)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.cmdCreate = QtWidgets.QPushButton(self.centralwidget)
@@ -55,7 +62,7 @@ class Ui_MainWindow(object):
         self.verticalLayout.addLayout(self.horizontalLayout_2)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 837, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 837, 26))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -69,10 +76,11 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Exercise creator for 1st grades"))
         self.label.setText(_translate("MainWindow", "Filter:"))
+        self.chkAggregate.setText(_translate("MainWindow", "Aggregate results"))
         self.cmdCreate.setText(_translate("MainWindow", "Create excel"))
         self.cmdAddSheet.setText(_translate("MainWindow", "Add exercise sheet"))
 
-from ex_creator.wgtConfigurator import Configurator
+from .wgtConfigurator import Configurator
 
 if __name__ == "__main__":
     import sys
