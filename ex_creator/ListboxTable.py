@@ -28,7 +28,7 @@ class ListboxTable(QTableWidget):
 
         self.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
 
-        self.editTriggers=QAbstractItemView.NoEditTriggers
+        self.editTriggers=QAbstractItemView.NoEditTriggers #type: ignore
         #        self.setSelectiuonBehavior(QAbstractItemView.SelectRows)
         self.setSelectionMode(QAbstractItemView.SingleSelection)
         self.setSortingEnabled(True)
@@ -45,7 +45,7 @@ class ListboxTable(QTableWidget):
                 newitem=QTableWidgetItem(str(item))
                 self.setItem(m,n,newitem)
 
-        self.setHorizontalHeader(horHeaders)
+        self.setHorizontalHeader(horHeaders) #type: ignore
 
 
 

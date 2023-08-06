@@ -1,11 +1,9 @@
-# -*- coding: utf-8 -*-
 """
 Created on Tue Nov 27 06:45:55 2018
 
 @author: Roee
 """
-
-from pylab import *
+from pylab import sqrt
 
 
 def integer_decompose(n):

@@ -26,7 +26,7 @@ class DialogCreatorMain(QMainWindow):
         self.ex_idx=0
         self.writer=writer
         #self.ui.wgtParams.set_parameters([{'name':'param1','min':0,'max':10,'default':4},{'name':'param2','min':0,'max':20,'default':6}])
-        self.ui.lstTypes.selection_changed.connect(self.TypeSelectionChanged)
+        self.ui.lstTypes.selection_changed.connect(self.TypeSelectionChanged) #type: ignore
 
     def TypeSelectionChanged(self):
         idx=self.ui.lstTypes.currentRow()
