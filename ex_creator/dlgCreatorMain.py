@@ -59,9 +59,9 @@ class DialogCreatorMain(QMainWindow):
         self.ui.lstExercises.addItem(ex_name)
         if 'params' in ex:
             d=self.ui.wgtParams.get_result()
-            ex_list,_ = ex['method'](**d)
+            ex_list = ex['method'](**d)
         else:
-            ex_list,_ = ex['method']()
+            ex_list = ex['method']()
         
         write_list = True
         if self.ui.chkAggregate.isChecked():

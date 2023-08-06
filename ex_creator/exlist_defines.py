@@ -16,57 +16,57 @@ from ex_creator.xls_writer import exercise_xls_writer
 
 def create_mult_div_parentheses( min_mult, max_mult):
     ex_list = gen.generate_mult_div_parentheses(mult_range=range(min_mult, max_mult + 1))
-    return ex_list,18
+    return zip(ex_list,[18]*len(ex_list))
 
 def create_sum_diff(min_sum,max_sum,ex_count):
     ex_list=gen.generate_sum_diff(min_sum=min_sum,max_sum=max_sum,count=ex_count)
-    return ex_list,24
+    return zip(ex_list,[24]*len(ex_list))
 
 
 def create_sum_diff_mult_w_parentheses( min_mult, max_mult, min_sum, max_sum,ex_count):
     mult_range = range(min_mult, max_mult + 1)
     ex_list = gen.generate_mult_sum_diff_parentheses(min_sum=min_sum, max_sum=max_sum, mult_range=mult_range,count=ex_count)
-    return ex_list,18
+    return zip(ex_list,[18]*len(ex_list))
 
 def create_sum_diff_w_parentheses(min_sum,max_sum):
     ex_list=gen.generate_sum_diff_with_parentheses(min_sum=min_sum,max_sum=max_sum)
-    return ex_list,24
+    return zip(ex_list,[24]*len(ex_list))
 
 def create_sum_diff_var(min_sum,max_sum,ex_count):
     ex_list=gen.generate_sumdiff_variable(min_sum=min_sum,max_sum=max_sum,count=ex_count)
-    return ex_list,24
+    return zip(ex_list,[24]*len(ex_list))
 
 
 def create_mult( range1_min, range1_max, range2_min, range2_max,ex_count):
     ex_list=gen.generate_mult(range1=range(range1_min,range1_max+1), range2=range(range2_min,range2_max+1),count=ex_count)
-    return ex_list,24
+    return zip(ex_list,[24]*len(ex_list))
 
 
 def create_mult_div_var( range_min, range_max):
     ex_list = gen.generate_mult_div_var(var_range=range(range_min, range_max + 1))
-    return ex_list,24
+    return zip(ex_list,[24]*len(ex_list))
 
 
 
 def create_div( range1_min, range1_max, range2_min, range2_max):
     ex_list=gen.generate_div(range1=range(range1_min,range1_max+1), range2=range(range2_min,range2_max+1))
-    return ex_list,24
+    return zip(ex_list,[24]*len(ex_list))
 
 
 def create_vertical_sub( range_min, range_max, more_zeros):
     ex_list = gen.generate_vertical_sub(min_val=range_min, max_val=range_max, more_zeros=more_zeros)
-    return ex_list,24
+    return zip(ex_list,[24]*len(ex_list))
 
 
 def create_vertical_mult_3digits_single( conversion_difficulty):
     ex_list = gen.generate_vertical_mult_3digits_single(conversion_difficulty=conversion_difficulty)
-    return ex_list,24
+    return zip(ex_list,[24]*len(ex_list))
 
 
 def create_measurements( min_val, max_val, level_dist, both_directions):
     ex_list = gen.generate_measurements1(min_val=min_val, max_val=max_val, level_dist=level_dist,
                                          both_directions=both_directions)
-    return ex_list,24
+    return zip(ex_list,[24]*len(ex_list))
 
 
 def get_exlist_dialogdef() -> list[dict]:

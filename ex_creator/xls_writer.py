@@ -174,9 +174,33 @@ def get_styles_vertical(ex_font_size=16):
 
     return styles
 
+prev_size=0
+
+def write_styled_element(sheet, row, col, elm, s, style_name):
+    """Write element with its correct font size. update style if needed
+       A bit of clumsy writing - for minimal code changes
+
+    Args:
+        elm : The elemet to write, can be text of tuple of string and font size
+        s : The styles dictionary - to be replaced if necessary
+        style_name : The name of style
+
+    Returns:
+        The update style dictionary if font was changed
+    """
+    global prev_size
+    if isinstance(elm,tuple):
+        elm,fsize = elm
+        if fsize!=prev_size:
+            s=get_styles_standard(fsize)
+            prev_size=fsize
+    sheet.write(row, col, elm, style=s[style_name]) #type:ignore
+    return s
+
 class exercise_xls_writer():
     def __init__(self):
         self.workbook=xlwt.Workbook()
+
 
     def create_ex_list(self, sheet_name, ex_list, ex_font_size=24):
         s = get_styles_standard(ex_font_size)
@@ -187,20 +211,20 @@ class exercise_xls_writer():
 
         count = len(ex_list)
         countd2 = count//2
-        sheet.write(0, 1, ex_list[0], style=s['text_style_top_left'])
-        sheet.write(0, 3, ex_list[countd2], style=s['text_style_top_right'])
+        s=write_styled_element(sheet,0, 1, ex_list[0], s,'text_style_top_left')
+        s=write_styled_element(sheet,0, 3, ex_list[countd2], s,'text_style_top_right')
 
         for i in range(1,countd2-1):
             sheet.write(i, 0, "{0}".format(i + 1), style=s['num_style_left'])
-            sheet.write(i, 1, ex_list[i], style=s['text_style_left'])
+            s=write_styled_element(sheet,i, 1, ex_list[i], s,'text_style_left')
             sheet.write(i, 2, "{0}".format(i + countd2+1), style=s['num_style_right'])
-            sheet.write(i, 3, ex_list[i + countd2], style=s['text_style_right'])
+            s=write_styled_element(sheet,i, 3, ex_list[i + countd2], s,'text_style_right')
 
         sheet.write(countd2-1, 0, "{0}".format(countd2), style=s['num_style_bot_left'])
         sheet.write(countd2-1, 2, "{0}".format(count), style=s['num_style_bot_right'])
 
-        sheet.write(countd2-1, 1, ex_list[countd2-1], style=s['text_style_bot_left'])
-        sheet.write(countd2-1, 3, ex_list[count-1], style=s['text_style_bot_right'])
+        s=write_styled_element(sheet,countd2-1, 1, ex_list[countd2-1], s,'text_style_bot_left')
+        s=write_styled_element(sheet,countd2-1, 3, ex_list[count-1], s,'text_style_bot_right')
 
         sheet.col(0).width=1800
         sheet.col(1).width=10400
