@@ -8,6 +8,9 @@ Licensed under the MIT License (see LICENSE for details)
 Written by Roee Sfaradi
 """
 
+import sys
+print(sys.path)
+
 from ex_creator.dlgCreatorMain import DialogCreatorMain
 from PyQt5 import QtWidgets,QtGui,QtCore
 

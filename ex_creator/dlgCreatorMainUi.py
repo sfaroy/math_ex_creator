@@ -7,8 +7,8 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from ex_creator.wgtConfigurator import Configurator
-from ListWidgetWithEvent import ListWidgetWithEvent
+from .wgtConfigurator import Configurator
+from .ListWidgetWithEvent import ListWidgetWithEvent
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):

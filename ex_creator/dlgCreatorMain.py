@@ -9,10 +9,10 @@ Written by Roee Sfaradi
 # %%
 
 
-from dlgCreatorMainUi import Ui_MainWindow as uiCreator
+from .dlgCreatorMainUi import Ui_MainWindow as uiCreator
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5 import QtWidgets
-from ex_creator.xls_writer import exercise_xls_writer
+from .xls_writer import exercise_xls_writer
 
 
 class DialogCreatorMain(QMainWindow):
