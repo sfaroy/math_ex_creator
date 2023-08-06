@@ -6,8 +6,6 @@ dlgCreatorMain.py - Main dialog
 Licensed under the MIT License (see LICENSE for details)
 Written by Roee Sfaradi
 """
-# %%
-
 
 from .dlgCreatorMainUi import Ui_MainWindow as uiCreator
 from PyQt5.QtWidgets import QMainWindow
@@ -17,7 +15,7 @@ from .xls_writer import exercise_xls_writer
 
 class DialogCreatorMain(QMainWindow):
 
-    def __init__(self,writer):
+    def __init__(self,writer:exercise_xls_writer):
         QMainWindow.__init__(self)
         self.ui=uiCreator()
         self.ui.setupUi(self)
@@ -27,6 +25,7 @@ class DialogCreatorMain(QMainWindow):
         self.writer=writer
         #self.ui.wgtParams.set_parameters([{'name':'param1','min':0,'max':10,'default':4},{'name':'param2','min':0,'max':20,'default':6}])
         self.ui.lstTypes.selection_changed.connect(self.TypeSelectionChanged) #type: ignore
+        self.aggregated_list =[]
 
     def TypeSelectionChanged(self):
         idx=self.ui.lstTypes.currentRow()
@@ -60,10 +59,22 @@ class DialogCreatorMain(QMainWindow):
         self.ui.lstExercises.addItem(ex_name)
         if 'params' in ex:
             d=self.ui.wgtParams.get_result()
-            ex['method'](ex_name,self.writer,**d)
+            ex_list,_ = ex['method'](**d)
         else:
-            ex['method'](ex_name,self.writer)
-        self.ex_idx=self.ex_idx+1
+            ex_list,_ = ex['method']()
+        
+        write_list = True
+        if self.ui.chkAggregate.isChecked():
+            self.aggregated_list += ex_list
+            if len(self.aggregated_list)>=60: #TODO: change this number to const
+                ex_list = self.aggregated_list[0:60]
+                self.aggregated_list = self.aggregated_list[60:-1]
+            else:
+                write_list = False
+        
+        if write_list:
+            self.writer.create_ex_list(ex_name,ex_list)
+            self.ex_idx=self.ex_idx+1
 
     def SetExerciseList(self,ex_list):
         self.ex_list=ex_list

@@ -14,59 +14,59 @@ import ex_creator.ex_generator as gen
 from ex_creator.xls_writer import exercise_xls_writer
 
 
-def create_mult_div_parentheses(sheet_name,writer:exercise_xls_writer, min_mult, max_mult):
+def create_mult_div_parentheses( min_mult, max_mult):
     ex_list = gen.generate_mult_div_parentheses(mult_range=range(min_mult, max_mult + 1))
-    writer.create_ex_list(sheet_name, ex_list, ex_font_size=18)
+    return ex_list,18
 
-def create_sum_diff(sheet_name,writer:exercise_xls_writer,min_sum,max_sum,ex_count):
+def create_sum_diff(min_sum,max_sum,ex_count):
     ex_list=gen.generate_sum_diff(min_sum=min_sum,max_sum=max_sum,count=ex_count)
-    writer.create_ex_list(sheet_name,ex_list)
+    return ex_list,24
 
 
-def create_sum_diff_mult_w_parentheses(sheet_name,writer:exercise_xls_writer, min_mult, max_mult, min_sum, max_sum):
+def create_sum_diff_mult_w_parentheses( min_mult, max_mult, min_sum, max_sum,ex_count):
     mult_range = range(min_mult, max_mult + 1)
-    ex_list = gen.generate_mult_sum_diff_parentheses(min_sum=min_sum, max_sum=max_sum, mult_range=mult_range)
-    writer.create_ex_list(sheet_name, ex_list, ex_font_size=18)
+    ex_list = gen.generate_mult_sum_diff_parentheses(min_sum=min_sum, max_sum=max_sum, mult_range=mult_range,count=ex_count)
+    return ex_list,18
 
-def create_sum_diff_w_parentheses(sheet_name,writer:exercise_xls_writer,min_sum,max_sum):
+def create_sum_diff_w_parentheses(min_sum,max_sum):
     ex_list=gen.generate_sum_diff_with_parentheses(min_sum=min_sum,max_sum=max_sum)
-    writer.create_ex_list(sheet_name,ex_list)
+    return ex_list,24
 
-def create_sum_diff_var(sheet_name,writer:exercise_xls_writer,min_sum,max_sum,ex_count):
+def create_sum_diff_var(min_sum,max_sum,ex_count):
     ex_list=gen.generate_sumdiff_variable(min_sum=min_sum,max_sum=max_sum,count=ex_count)
-    writer.create_ex_list(sheet_name,ex_list)
+    return ex_list,24
 
 
-def create_mult(sheet_name,writer:exercise_xls_writer, range1_min, range1_max, range2_min, range2_max,ex_count):
+def create_mult( range1_min, range1_max, range2_min, range2_max,ex_count):
     ex_list=gen.generate_mult(range1=range(range1_min,range1_max+1), range2=range(range2_min,range2_max+1),count=ex_count)
-    writer.create_ex_list(sheet_name,ex_list)
+    return ex_list,24
 
 
-def create_mult_div_var(sheet_name,writer:exercise_xls_writer, range_min, range_max):
+def create_mult_div_var( range_min, range_max):
     ex_list = gen.generate_mult_div_var(var_range=range(range_min, range_max + 1))
-    writer.create_ex_list(sheet_name, ex_list)
+    return ex_list,24
 
 
 
-def create_div(sheet_name,writer:exercise_xls_writer, range1_min, range1_max, range2_min, range2_max):
+def create_div( range1_min, range1_max, range2_min, range2_max):
     ex_list=gen.generate_div(range1=range(range1_min,range1_max+1), range2=range(range2_min,range2_max+1))
-    writer.create_ex_list(sheet_name,ex_list)
+    return ex_list,24
 
 
-def create_vertical_sub(sheet_name,writer:exercise_xls_writer, range_min, range_max, more_zeros):
+def create_vertical_sub( range_min, range_max, more_zeros):
     ex_list = gen.generate_vertical_sub(min_val=range_min, max_val=range_max, more_zeros=more_zeros)
-    writer.create_ex_list_vertical(sheet_name, ex_list)
+    return ex_list,24
 
 
-def create_vertical_mult_3digits_single(sheet_name,writer:exercise_xls_writer, conversion_difficulty):
+def create_vertical_mult_3digits_single( conversion_difficulty):
     ex_list = gen.generate_vertical_mult_3digits_single(conversion_difficulty=conversion_difficulty)
-    writer.create_ex_list_vertical(sheet_name, ex_list)
+    return ex_list,24
 
 
-def create_measurements(sheet_name,writer:exercise_xls_writer, min_val, max_val, level_dist, both_directions):
+def create_measurements( min_val, max_val, level_dist, both_directions):
     ex_list = gen.generate_measurements1(min_val=min_val, max_val=max_val, level_dist=level_dist,
                                          both_directions=both_directions)
-    writer.create_ex_list(sheet_name, ex_list)
+    return ex_list,24
 
 
 def get_exlist_dialogdef() -> list[dict]:
@@ -119,7 +119,8 @@ def get_exlist_dialogdef() -> list[dict]:
              {'name': 'min_sum', 'min': 0, 'max': 1000, 'default': 110},
              {'name': 'max_sum', 'min': 0, 'max': 1000, 'default': 220},
              {'name': 'min_mult', 'min': 1, 'max': 100, 'default': 1},
-             {'name': 'max_mult', 'min': 1, 'max': 100, 'default': 10}
+             {'name': 'max_mult', 'min': 1, 'max': 100, 'default': 10},
+             {'name': 'ex_count', 'min': 0, 'max': 60, 'default': 60}
          ]
          },
         {'name': '8. Multiply divide with parentheses', "sheet": "mult_div",
